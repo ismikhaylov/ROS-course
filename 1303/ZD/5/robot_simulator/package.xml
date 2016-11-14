@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package>
+  <name>robot_simulator</name>
+  <version>1.0.0</version>
+  <description>This package contains robot simulato for lab #5</description>
+  <maintainer email="dmz64@---yandex.ru">Dmitry Zykov</maintainer>
+  <license>GPL</license>
+  <build_depend>tf</build_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>tf</run_depend>
+  <export>
+  </export>
+</package>
