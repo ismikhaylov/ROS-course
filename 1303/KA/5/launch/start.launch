@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="gzsearch" type="walker"
+          args="/robot1" name="walker" />
+                    
+    <node pkg="gzsearch" type="searcher"
+          args="/robot2 /robot1" name="searcher" />
+          
+    <!--node pkg="gazebo_ros" type="gazebo"
+          name="gazebo" /-->
+</launch>
