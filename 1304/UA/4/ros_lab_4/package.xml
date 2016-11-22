@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>lab4_explorer</name>
+  <version>0.1.0</version>
+
+  <license>MIT</license>
+
+  <maintainer email="uzhegov37@yahoo.com">Alexey Uzhegov</maintainer>
+  <author email="uzhegov37@yahoo.com">Alexey Uzhegov</author>
+
+  <description>Blah Blah</description>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+</package>
