@@ -1,0 +1,30 @@
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+  <arg name="pref1" default="robot1"/>
+  <arg name="pref2" default="robot2"/>
+
+  <group ns="robot1" clear_params="true">
+    <param name="tf_prefix" value="robot1_tf"/>
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find mybot_description)/urdf/mybot.xacro param_prefix:=robot1 rotation_platform:=-.785" />
+    <rosparam file="$(find mybot_control)/config/mybot_control.yaml" command="load"/>
+    <include file="$(find mybot_gazebo)/launch/mybot_one_robot1.launch" >
+      <arg name="init_pose"   value=" -x -6.0 -y 2.0 -z 0.0 " />
+      <arg name="robot_name"  value="Robot1" />
+      <arg name="tf_prefix"   value="robot1_tf" />-
+      <arg name="namespace"   value="robot1" />
+    </include>
+  </group>
+
+  <group ns="robot2" clear_params="true">
+    <param name="tf_prefix" value="robot2_tf" />
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find mybot_description)/urdf/mybot.xacro param_prefix:=robot2 rotation_platform:=2.355" /> 
+    <rosparam file="$(find mybot_control)/config/mybot_control.yaml" command="load"/>
+    <include file="$(find mybot_gazebo)/launch/mybot_one_robot1.launch" >
+      <arg name="init_pose"   value=" -x -1.0 -y -3.0 -z 0.0 " />
+      <arg name="robot_name"  value="Robot2" />
+      <arg name="tf_prefix"   value="robot2_tf" />
+      <arg name="namespace"   value="robot2" />
+    </include>
+  </group>
+</launch>

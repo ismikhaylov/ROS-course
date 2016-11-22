@@ -1,0 +1,26 @@
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose"/>
+    <arg name="tf_prefix"/>
+    <arg name="namespace"/>
+
+    <!-- load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen"
+      args="joint_state_controller
+        rightWheel_effort_controller
+        leftWheel_effort_controller"
+    />
+
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model"
+     args="$(arg init_pose) -urdf -param /$(arg namespace)/robot_description -model $(arg robot_name)"
+     respawn="false" output="screen" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="tf_prefix" type="string" value=""/>
+      <param name="robot_description" value="/$(arg namespace)/robot_description"/>
+    </node>
+
+    <!-- The odometry estimator, throttling, fake laser etc. go here -->
+    <!-- All the stuff as from usual robot launch file -->
+</launch>

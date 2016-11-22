@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="map_name" default="my_world.world"/>
+    <arg name="output" default="screen"/>
+    <param name="/use_sim_time" value="true"/>
+    <!--
+        Start simulation.
+    !-->
+    <node respawn="true" pkg="stage_ros" type="stageros" name="simulation"
+          args="$(find lab4_explorer)/world/$(arg map_name)"/>
+    <!--
+        Start exploration package
+    -->
+    <node respawn="false" pkg="lab4_explorer" type="lab4_explorer" name="lab4_explorer" output="$(arg output)"
+        args="10.0 10.0 1.0">
+    </node>
+</launch>

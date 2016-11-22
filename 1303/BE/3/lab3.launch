@@ -1,0 +1,10 @@
+<launch>
+    <node name="R2D2" 
+          pkg="lab3" 
+          type="R2D2" 
+    />
+    <node name="C3Po" 
+          pkg="lab3" 
+          type="C3Po" 
+    />
+</launch>
