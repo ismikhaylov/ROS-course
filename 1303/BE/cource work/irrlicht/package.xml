@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>irrlicht</name>
+  <version>1.0.0</version>
+
+  <description>This package was written at ETU LETI, as a cource work.</description>
+  <maintainer>Katerina</maintainer>
+  <maintainer>Roman</maintainer>
+  
+  <license>ZLIB</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>move_base</build_depend>
+  <build_depend>OpenGL</build_depend>
+  <build_depend>glut</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslib</build_depend>
+  
+  <run_depend>move_base</run_depend>
+  <run_depend>Irrlicht</run_depend>
+  <run_depend>gmapping</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>roslib</run_depend>
+
+</package>
