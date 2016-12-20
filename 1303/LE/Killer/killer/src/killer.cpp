@@ -4,7 +4,7 @@
 int main( int argc, char** argv ) {
   ros::init(argc, argv, "killer");
   ros::NodeHandle n;
-  ros::Rate r(10);
+  ros::Rate r(2);
   geometry_msgs::Pose pose;
 
   tf::Quaternion q(tf::Vector3(0, 0, 1), M_PI);
@@ -13,9 +13,10 @@ int main( int argc, char** argv ) {
   pose.orientation = odom_quat;
 
   pose.position.x = 10.3;
-  Killer killer(pose, n);
+  Killer killer(pose, n, 3);
   
   while (ros::ok()) {
+    killer.followTarget();
     r.sleep();
   }
   return 0;

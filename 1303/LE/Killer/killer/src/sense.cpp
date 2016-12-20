@@ -15,8 +15,9 @@ int main( int argc, char** argv ) {
 
   Sense sense({20, 20, 3, pose}, poseStart, 3, n);
   sense.generateTargets(3);
+  sense.generateBarriers(10);
 
-  while (ros::ok()) {
+  while (!sense.end) {
     sense.work();
   }
   return 0;
