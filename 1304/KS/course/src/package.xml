@@ -43,10 +43,12 @@
   <build_depend>tf</build_depend>
   <build_depend>gazebo_ros</build_depend>
   <buildtool_depend>catkin</buildtool_depend>
+  
   <run_depend>roscpp</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>gazebo_ros</run_depend>
   <run_depend>map_merger</run_depend>
+
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
