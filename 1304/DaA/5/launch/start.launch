@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="gazebo_lab" type="lost_bot"
+          args="" name="lost_bot" />
+                    
+    <node pkg="gazebo_lab" type="saver_bot"
+          args="" name="saver_bot" />
+          
+    <!--node pkg="gazebo_ros" type="gazebo"
+          name="gazebo" /-->
+</launch>
