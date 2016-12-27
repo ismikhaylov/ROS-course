@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<robot name="mybot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="PI" value="3.1415926535897931"/>
+
+    <xacro:property name="chassisHeight" value="0.1"/>
+    <xacro:property name="chassisLength" value="0.4"/>
+    <xacro:property name="chassisWidth" value="0.2"/>
+    <xacro:property name="chassisMass" value="50"/>
+
+    <xacro:property name="casterRadius" value="0.05"/>
+    <xacro:property name="casterMass" value="5"/>
+
+    <xacro:property name="wheelWidth" value="0.05"/>
+    <xacro:property name="wheelRadius" value="0.1"/>
+    <xacro:property name="wheelPos" value="0.2"/>
+    <xacro:property name="wheelMass" value="5"/>
+
+    <xacro:property name="laserScanerSize" value="0.05"/>
+    <xacro:property name="laserScanerMass" value="0.1"/>
+
+    <xacro:property name="slingshot_cylinder_lenght" value="0.8"/> 
+    <xacro:property name="slingshot_cylinder_radius" value="0.02"/>
+    <xacro:property name="slingshot_platform_l" value="0.2"/>
+    <xacro:property name="slingshot_platform_w" value="0.2"/>
+    <xacro:property name="slingshot_platform_h" value="0.01"/>
+ 
+    <xacro:property name="slingshot_platform_border_l" value="0.2"/>
+    <xacro:property name="slingshot_platform_border_w" value="0.02"/>
+    <xacro:property name="slingshot_platform_border_h" value="0.1"/>
+
+    <xacro:include filename="$(find mybot_description)/urdf/mybot.gazebo" />
+    <xacro:include filename="$(find mybot_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find mybot_description)/urdf/macros.xacro" />
+
+    <link name="$(arg param_prefix)_tf/footprint" />
+
+    <joint name="$(arg param_prefix)_tf/base_joint" type="fixed">
+      <origin xyz="0 0 ${wheelRadius}" rpy="0 0 0"/> 
+      <parent link="$(arg param_prefix)_tf/footprint"/>
+      <child link="$(arg param_prefix)_tf/chassis"/>
+    </joint>
+
+    <link name='$(arg param_prefix)_tf/chassis'>
+      <collision> 
+        <geometry> 
+          <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
+        </geometry> 
+      </collision>
+      <visual> 
+        <geometry> 
+          <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
+        </geometry> 
+        <material name="orange"/>
+      </visual>
+      <inertial> 
+        <mass value="${chassisMass}"/> 
+        <box_inertia m="${chassisMass}" x="${chassisLength}" y="${chassisWidth}" z="${chassisHeight}"/>
+      </inertial>
+    </link>
+
+    <joint name="fixed" type="fixed">
+      <origin xyz="${casterRadius-chassisLength/2} 0 ${-chassisHeight/2}" rpy="0 0 0"/>
+      <parent link="$(arg param_prefix)_tf/chassis"/>
+      <child link="$(arg param_prefix)_tf/caster_wheel"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/caster_wheel">
+      <collision>
+        <geometry>
+          <sphere radius="${casterRadius}"/>
+        </geometry>
+      </collision>
+      
+      <visual>
+        <geometry>
+          <sphere radius="${casterRadius}"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+
+      <inertial>
+        <mass value="${casterMass}"/>
+        <sphere_inertia m="${casterMass}" r="${casterRadius}"/>
+      </inertial>
+    </link>
+
+    <!-- <joint name="fixed2" type="fixed">
+      <origin xyz="${-casterRadius+chassisLength/2} 0 ${-chassisHeight/2}" rpy="0 0 0"/>
+      <parent link="chassis"/>
+      <child link="caster_wheel2"/>
+    </joint>
+
+    <link name="caster_wheel2">
+      <collision>
+        <geometry>
+          <sphere radius="${0.9 * casterRadius}"/>
+        </geometry>
+      </collision>
+      
+      <visual>
+        <geometry>
+          <sphere radius="${0.9 * casterRadius}"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+
+      <inertial>
+        <mass value="${casterMass}"/>
+        <sphere_inertia m="${casterMass}" r="${0.9 * casterRadius}"/>
+      </inertial>
+    </link>
+    -->
+
+    <wheel lr="left" tY="-1"/>
+    <wheel lr="right" tY="1"/>
+
+    <joint name="base_joint2" type="fixed">
+      <axis xyz="0 1 0" rpy="0 0 1.57" />
+      <origin xyz="${chassisLength/2 - 1.1 * laserScanerSize/2} 0 ${chassisHeight/2 + laserScanerSize/2}" rpy="0 0 0"/>
+      <parent link="$(arg param_prefix)_tf/chassis"/>
+      <child link="$(arg param_prefix)_tf/laserScaner"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/laserScaner">
+      <collision>
+        <geometry>
+          <box size="${laserScanerSize} ${laserScanerSize} ${laserScanerSize}"/>
+        </geometry>
+      </collision>
+
+      <visual>
+        <geometry>
+          <box size="${laserScanerSize} ${laserScanerSize} ${laserScanerSize}"/>
+        </geometry>
+        <material name="blue"/>
+      </visual>
+
+      <inertial>
+        <mass value="${laserScanerMass}" />
+        <box_inertia m="${laserScanerMass}" x="${laserScanerSize}" y="${laserScanerSize}" z="${laserScanerSize}" />
+      </inertial>
+    </link> 
+
+    <joint name="base_joint3" type="fixed">
+      <axis xyz="0 0 1" rpy="0 0 1.57" />
+      <origin xyz="${chassisHeight/2} 0 ${chassisHeight/2 + slingshot_cylinder_lenght/2}" rpy="0 0 0"/>
+      <parent link="$(arg param_prefix)_tf/chassis"/>
+      <child link="$(arg param_prefix)_tf/slingshot_cylinder"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/slingshot_cylinder">
+      <collision>
+        <geometry>
+          <cylinder length="${slingshot_cylinder_lenght}" radius="${slingshot_cylinder_radius}"/>
+        </geometry>
+      </collision>
+
+      <visual>
+        <geometry>
+           <cylinder length="${slingshot_cylinder_lenght}" radius="${slingshot_cylinder_radius}"/>
+        </geometry>
+        <material name="green"/>
+      </visual>
+
+      <inertial>
+        <mass value="2"/>
+        <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+      </inertial>
+    </link>
+
+    <joint name="base_joint4" type="continuous">
+      <axis xyz="0 0 1" />
+      <origin xyz="${chassisHeight/2 - slingshot_cylinder_radius*2} 0 ${slingshot_cylinder_lenght/2 + slingshot_platform_h/2}" rpy="0 0 $(arg rotation_platform)"/>
+      <parent link="$(arg param_prefix)_tf/slingshot_cylinder"/>
+      <child link="$(arg param_prefix)_tf/slingshot_platform"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/slingshot_platform">
+      <visual>
+        <geometry>
+           <box size="${slingshot_platform_l} ${slingshot_platform_w} ${slingshot_platform_h}"/>
+        </geometry>
+        <material name="green"/>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="${slingshot_platform_l} ${slingshot_platform_w} ${slingshot_platform_h}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="2" />
+        <box_inertia m="2" x="${slingshot_platform_l}" y="${slingshot_platform_w}" z="${slingshot_platform_h}" />
+      </inertial>
+    </link> 
+
+    <joint name="base_joint5" type="fixed">
+      <axis xyz="0 1 0" />
+      <origin xyz="${chassisHeight/2 - slingshot_cylinder_radius*2} ${chassisWidth/2 - slingshot_platform_w/2 - 0.1} ${slingshot_platform_h/2 + slingshot_platform_border_h/2}" rpy="0 0 0"/>
+      <parent link="$(arg param_prefix)_tf/slingshot_platform"/>
+      <child link="$(arg param_prefix)_tf/slingshot_platform_left"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/slingshot_platform_left">
+      <visual>
+        <geometry>
+           <box size="${slingshot_platform_border_l} ${slingshot_platform_border_w} ${slingshot_platform_border_h}"/>
+        </geometry>
+        <material name="green"/>
+      </visual>
+      <collision>
+       <geometry>
+          <box size="${slingshot_platform_border_l} ${slingshot_platform_border_w} ${slingshot_platform_border_h}"/>
+       </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.5" />
+        <box_inertia m="0.5" x="${slingshot_platform_border_l}" y="${slingshot_platform_border_w}" z="${slingshot_platform_border_h}" />
+      </inertial> 
+    </link> 
+
+    <joint name="base_joint6" type="fixed">
+      <axis xyz="0 1 0" />
+      <origin xyz="${chassisHeight/2 - slingshot_cylinder_radius*2} ${chassisWidth/2 + slingshot_platform_w/2 - 0.1} ${slingshot_platform_h/2 + slingshot_platform_border_h/2}" rpy="0 0 0"/>
+      <parent link="$(arg param_prefix)_tf/slingshot_platform"/>
+      <child link="$(arg param_prefix)_tf/slingshot_platform_right"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/slingshot_platform_right">
+      <visual>
+        <geometry>
+           <box size="${slingshot_platform_border_l} ${slingshot_platform_border_w} ${slingshot_platform_border_h}"/>
+        </geometry>
+        <material name="blue"/>
+      </visual>
+      <collision>
+       <geometry>
+          <box size="${slingshot_platform_border_l} ${slingshot_platform_border_w} ${slingshot_platform_border_h}"/>
+       </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.5" />
+        <box_inertia m="0.5" x="${slingshot_platform_border_l}" y="${slingshot_platform_border_w}" z="${slingshot_platform_border_h}" />
+      </inertial> 
+    </link>
+
+    <joint name="base_joint7" type="fixed">
+      <axis xyz="0 1 0" />
+      <origin xyz="${chassisHeight/2 - slingshot_cylinder_radius*2 - slingshot_platform_w/2} 0 ${slingshot_platform_h/2 + slingshot_platform_border_h/2}" rpy="0 0 0"/>
+      <parent link="$(arg param_prefix)_tf/slingshot_platform"/>
+      <child link="$(arg param_prefix)_tf/slingshot_platform_back"/>
+    </joint>
+
+    <link name="$(arg param_prefix)_tf/slingshot_platform_back">
+      <visual>
+        <geometry>
+           <box size="${slingshot_platform_border_w} ${slingshot_platform_border_l} ${slingshot_platform_border_h}"/>
+        </geometry>
+      </visual>
+      <collision>
+       <geometry>
+          <box size="${slingshot_platform_border_w} ${slingshot_platform_border_l} ${slingshot_platform_border_h}"/>
+       </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.5" />
+        <box_inertia m="0.5" x="${slingshot_platform_border_w}" y="${slingshot_platform_border_l}" z="${slingshot_platform_border_h}" />
+      </inertial> 
+    </link>
+</robot>

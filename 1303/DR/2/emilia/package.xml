@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  
+  <name>emilia</name>
+  <version>1.0.0</version>
+  <description>A part of lab #2 for ROS Course at ETU LETI, group 1303</description>
+  <maintainer email="Roman.Degtyar@protonmail.com">Roman</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>gn_tokugava</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>gn_tokugava</run_depend>
+
+</package>

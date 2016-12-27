@@ -1,0 +1,2 @@
+string author
+string content

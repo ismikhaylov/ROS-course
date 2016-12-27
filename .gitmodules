@@ -1,0 +1,6 @@
+[submodule "1303/ZD/kurs"]
+	path = 1303/ZD/kurs
+	url = https://github.com/dmitry64/ros-treasure-hunter
+[submodule "1304/DeA/kurs"]
+	path = 1304/DeA/kurs
+	url = https://github.com/dmitry64/ros-treasure-hunter

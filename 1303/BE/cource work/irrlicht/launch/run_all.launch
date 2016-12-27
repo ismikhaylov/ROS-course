@@ -1,0 +1,36 @@
+<launch>
+  <master auto="start"/>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find irrlicht)/parms/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find irrlicht)/parms/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find irrlicht)/parms/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find irrlicht)/parms/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find irrlicht)/parms/base_local_planner_params.yaml" command="load" />
+  </node>
+
+  <node 
+    pkg="irrlicht" 
+    type="controller" 
+    name="controller" 
+  />
+
+  <node 
+    pkg="irrlicht" 
+    type="scene" 
+    name="scene" 
+    output="screen"
+    launch-prefix="gnome-terminal --command" 
+  />
+
+  <node 
+    pkg="irrlicht" 
+    type="sauron" 
+    name="sauron" 
+  />
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" >
+    <param name="scan" value="scan" />
+    <param name="_odom_frame" value="odom" />
+  </node>
+</launch>

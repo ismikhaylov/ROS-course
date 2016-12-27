@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(packsub)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS packmsg roscpp )
+
+
+
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES packsub
+#  CATKIN_DEPENDS other_catkin_pkg
+#  DEPENDS system_lib
+)
+
+include_directories(include ${catkin_INCLUDE_DIRS})
+add_executable(sSat src/sSat.cpp )
+add_dependencies(sSat packmsg_gencpp) # ??
+target_link_libraries(sSat ${catkin_LIBRARIES})
+
+
+
+

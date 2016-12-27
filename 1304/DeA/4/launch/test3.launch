@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="ros_lab4" type="wanderer" name="wanderer" output="screen" args="-1.5 -1.5 3.7 6.7 test3 test_world.pgm" />
+</launch>

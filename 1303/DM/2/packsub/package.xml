@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>packsub</name>
+  <version>0.0.0</version>
+  <description>The packsub package</description>
+
+  <maintainer email="marc@todo.todo">marc</maintainer>
+
+
+  <license>TODO</license>
+
+
+ 
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>roscpp</run_depend>
+  <build_depend>packmsg</build_depend>
+  <run_depend>packmsg</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

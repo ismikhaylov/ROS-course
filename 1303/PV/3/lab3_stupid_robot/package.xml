@@ -1,0 +1,23 @@
+<package>
+  <name>lab3_stupid_robot</name>
+  <version>0.0.1</version>
+  <description>The lab3 package</description>
+  <license>none</license>
+  <maintainer email="parfenov.vladimir.s@gmail.com">root</maintainer>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <run_depend>tf</run_depend>
+
+
+  <export>
+
+
+  </export>
+</package>

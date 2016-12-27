@@ -1,0 +1,18 @@
+<launch>
+    <node name="gn_tokugava" 
+          pkg="gn_tokugava" 
+          type="gn_tokugava" 
+          output="screen" 
+          launch-prefix="gnome-terminal --command" 
+    />
+    <node name="emilia" 
+          pkg="emilia" 
+          type="emilia" 
+          output="screen" 
+          launch-prefix="gnome-terminal --command" 
+    />
+    <node name="dr_sanders" 
+          pkg="dr_sanders" 
+          type="dr_sanders" 
+    />
+</launch>

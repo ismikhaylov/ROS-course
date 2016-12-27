@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+    <name>lab2_message</name>
+    <version>1.0.0</version>
+<description>Lab 2</description>
+<maintainer email="parfenov.vladimir.s@gmail.com">Vladimir Parfenov</maintainer>
+<license>GPL</license>
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>message_generation</build_depend>
+    <build_depend>std_msgs</build_depend>
+    <run_depend>message_generation</run_depend>
+    <run_depend>message_runtime</run_depend>
+    <run_depend>std_msgs</run_depend>
+    <export>
+    </export>
+</package>

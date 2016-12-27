@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+
+  <name>lab3</name>
+  <version>1.0.0</version>
+  <description>ETU LETI, group 1303, lab #3</description>
+  <maintainer email="Roman.Degtyar@protonmail.com">Roman</maintainer>
+  <license>BSD</license>
+  <author email="Roman.Degtyar@protonmail.com">Roman Degtyar</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>roscpp</run_depend>
+
+</package>
