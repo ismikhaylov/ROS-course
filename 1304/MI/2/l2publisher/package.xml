@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>l2publisher</name>
+  <version>1.0.0</version>
+  <description>The publisher package</description>
+
+  <maintainer email="ismikhaylov@yandex.ru">ismik</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+</package>
