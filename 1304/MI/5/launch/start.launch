@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="twoRobots" type="lost"
+          args="/robot1" name="lost" />
+                    
+    <node pkg="twoRobots" type="finder"
+          args="/robot2 /robot1" name="finder" />
+          
+    <!--node pkg="gazebo_ros" type="gazebo"
+          name="gazebo" /-->
+</launch>
